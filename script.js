@@ -1,9 +1,9 @@
-function GenerateDiv(){
+/*function GenerateDiv(){
   const containerDiv = document.getElementById('sketch-container');
   const pixelDiv = document.createElement('div');
   pixelDiv.innerHTML = "Dom Div "; //used for testing
   containerDiv.appendChild(pixelDiv);
-}
+}*/
 
 
 
@@ -23,6 +23,32 @@ function CreateSketchBoard(btnVal){
   }
 }
 
-CreateSketchBoard(4);
+function GenerateRow(){
+  const rowDiv = document.createElement('div');
+  rowDiv.classList.add('row-container');
+  //const lineBr = document.createElement('br');
+  //let rowDivBr = rowDiv.appendChild(lineBr);
+  return rowDiv;//rowDivBr;
+}
 
+function GeneratePixel(btnValParam, rowParam){
+  const pixelDiv = document.createElement('div');
+  const rowDiv = rowParam;
+  
+  pixelDiv.innerHTML = "Pixel";
+  rowDiv.appendChild(pixelDiv);
+}
 
+function GenerateTable(){
+  const tableContainer = document.getElementById('sketch-container');
+  let row = GenerateRow();
+  tableContainer.appendChild(row);
+  let numOfPixels = 16;
+  for(let i = 0; i < numOfPixels; i++){
+    GeneratePixel(numOfPixels, row);
+  }
+}
+
+for(let i = 0; i < 16; i++){
+  GenerateTable();
+}
