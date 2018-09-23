@@ -1,15 +1,8 @@
-//Intial size
-let rows = 16;
-//document.body.onload = IntializeSketchPad(rows);
-
-function IntializeSketchPad(rowsParam){
- const container = document.getElementById('sketch-container');
- let rowDiv = document.createElement('div');
- rowDiv.innerHTML= "<p>Data</p>";
- container.appendChild(rowDiv);
- console.log(rowDiv.textContent);
-
-
+function GenerateDiv(){
+  const containerDiv = document.getElementById('sketch-container');
+  const pixelDiv = document.createElement('div');
+  pixelDiv.innerHTML = "Dom Div";
+  containerDiv.appendChild(pixelDiv);
 }
 
-IntializeSketchPad(rows);
+GenerateDiv();
