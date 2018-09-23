@@ -9,10 +9,11 @@ function GenerateRow(){
   rowDiv.classList.add('row-container'); //these are really columns
   return rowDiv;
 }
-//creates 
+
 function GeneratePixel(rowParam){
   const pixelDiv = document.createElement('div');
   const rowDiv = rowParam;
+  pixelDiv.classList.add("pixel-container");
   pixelDiv.innerHTML = "Pixel";
   rowDiv.appendChild(pixelDiv);
 }
@@ -27,10 +28,7 @@ function GenerateTable(columns){
   }
 }
 
-
-
 function AddEvent(sizeBtnArrayParam){
-  
   sizeBtnArrayParam.addEventListener('click', (e) => {
     console.log('button clicked');
     let columns = e.target.value;
@@ -38,8 +36,7 @@ function AddEvent(sizeBtnArrayParam){
     for(let j = 0; j  < columns; j++){
       GenerateTable(columns);
     }
-
-  })
+  });
 
 
 }

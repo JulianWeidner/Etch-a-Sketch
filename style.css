@@ -50,20 +50,24 @@ html{
   margin: 3% 25%;
   width: 50%;
   height: 80%;
-  text-align: center;
+  text-align: left;
   background-color: #8a9ca8;
   border-style: solid;
   border-width: 7px;
   border-color: #e63946;
   border-radius: 3px;
-  display: flex;
+  display: inline-block;
   flex-wrap: row wrap
 }
 
 .row-container{
-  display: inline;
+  display: inline-block;
   background-color: white;
-  
+}
 
+.pixel-container{
+  margin: 0;
+  padding: 0;
+  
 }
 
