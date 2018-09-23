@@ -60,6 +60,10 @@ html{
   flex-wrap: row wrap
 }
 
-div.row-container{
+.row-container{
   display: inline;
+  background-color: white;
+  overflow-wrap: break-word;
+
 }
+

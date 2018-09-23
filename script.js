@@ -5,7 +5,9 @@
   containerDiv.appendChild(pixelDiv);
 }*/
 
-
+//Event Handler
+sizeBtnGroup = document.querySelectorAll(".btn");
+Array.from(sizeBtnGroup).map(i => AddEvent(i));
 
 function CreateSketchRow(btnVal){
   let row = btnVal;
@@ -39,16 +41,29 @@ function GeneratePixel(btnValParam, rowParam){
   rowDiv.appendChild(pixelDiv);
 }
 
-function GenerateTable(){
+function GenerateTable(columns){
   const tableContainer = document.getElementById('sketch-container');
   let row = GenerateRow();
   tableContainer.appendChild(row);
-  let numOfPixels = 16;
+  let numOfPixels = columns;
   for(let i = 0; i < numOfPixels; i++){
     GeneratePixel(numOfPixels, row);
   }
 }
 
-for(let i = 0; i < 16; i++){
-  GenerateTable();
+
+
+function AddEvent(sizeBtnArrayParam){
+  
+  sizeBtnArrayParam.addEventListener('click', (e) => {
+    console.log('button clicked');
+    let columns = e.target.value;
+    console.log(columns);
+    for(let j = 0; j  < columns; j++){
+      GenerateTable(columns);
+    }
+
+  })
+
+
 }
