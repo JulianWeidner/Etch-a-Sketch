@@ -14,7 +14,7 @@ function GeneratePixel(rowParam){
   const pixelDiv = document.createElement('div');
   const rowDiv = rowParam;
   pixelDiv.classList.add("pixel-container");
-  pixelDiv.innerHTML = "Pixel";
+  
   rowDiv.appendChild(pixelDiv);
 }
 
@@ -30,13 +30,36 @@ function GenerateTable(columns){
 
 function AddEvent(sizeBtnArrayParam){
   sizeBtnArrayParam.addEventListener('click', (e) => {
-    console.log('button clicked');
-    let columns = e.target.value;
+    let columns = e.target.value; 
     console.log(columns);
     for(let j = 0; j  < columns; j++){
       GenerateTable(columns);
     }
+    const allPixels = document.querySelectorAll('.pixel-container');
+    Array.from(allPixels).map((i, columns) => AddSizeClass(i,columns));
+    Array.from(allPixels).map((i) => HoverEvent(i));
+  
   });
+}
 
+function HoverEvent(pixels){
+  pixels.addEventListener('mouseover', ()  => {
+    pixels.setAttribute('style','background-color: black;');
+  });
+}
+
+
+function AddSizeClass(pixelElement, sizeParam){
+  if(sizeParam == 16){
+    pixelElement.setAttribute("style", "width: .39%;");
+  } 
+  else if(sizeParam == 32){
+    //pixelElement.setAttribute("style", "width: .097%;");
+  }
+  else if(sizeParam == 64){
+   // pixelElement.setAttribute("style", "width: .024%;");
+  }
 
 }
+
+

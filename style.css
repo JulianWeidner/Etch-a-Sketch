@@ -49,7 +49,7 @@ html{
 .container {
   margin: 3% 25%;
   width: 50%;
-  height: 80%;
+  height: 100%;
   text-align: left;
   background-color: #8a9ca8;
   border-style: solid;
@@ -57,17 +57,34 @@ html{
   border-color: #e63946;
   border-radius: 3px;
   display: inline-block;
-  flex-wrap: row wrap
 }
 
-.row-container{
-  display: inline-block;
-  background-color: white;
+.row-container{ 
+  overflow: inherit;
 }
 
 .pixel-container{
   margin: 0;
   padding: 0;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  display: inline-block;
   
 }
 
+.pixel-container:hover {
+  background-color: black;
+}
+
+.pixel-container .sixten {
+  width: .39%;
+}
+
+.pixel-container .thirtyTwo{
+  width: .097%
+}
+
+.pixel-container .sixtyFour {
+  width: .024%
+}
