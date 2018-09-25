@@ -1,3 +1,7 @@
+//I think I should remove the GenerateColumn function now, rename the generate table to generate column, because that is what it is truly doing
+//Id rename the addEvent function to CreateSketch/table/etc because that is really what that function is doing. IT just so happens that the function defines a button event that is called by each button inside the Array of buttons created in the "event handler section"
+document.onload = InitialLoad();
+
 
 //Event Handler
 sizeBtnGroup = document.querySelectorAll(".size-button");
@@ -29,16 +33,23 @@ function GenerateTable(btnValParam){
   sketchContainer.appendChild(column);
   let numOfPixels = btnValParam; //The number of pixels is the same as the size button value
   for(let i = 0; i < numOfPixels; i++){
+    //here we pass the column div to generate the pixel.
+    //the column var stays the same for all of the pixels generated. until the Generate column is called again. (Ge)
     GeneratePixel(column);
   }
 }
-
+//This is really the generate table function, 
 function AddEvent(sizeBtnArrayParam){
   sizeBtnArrayParam.addEventListener('click', (e) => {
     let btnVal = e.target.value; //Num From size button
+    //if we wanted 16 rows we would want to call the generate table function 16 times. 
+    //Generate Table function also calls the GeneratePixels
     for(let j = 0; j  < btnVal; j++){
-      GenerateTable(btnVal); //calls the column
+      GenerateTable(btnVal); 
     }
+    //every pixel created gets the .pixel class added to it. 
+    //We take advantage of that here
+    //.map calls a function on every element of an array. Here we make an array of every element and then call the SetSize and add a Style changing hover affect.
     const allPixels = document.querySelectorAll('.pixel');
     Array.from(allPixels).map((i) => HoverEvent(btnVal,i));
     Array.from(allPixels).map((i) => SetSize(btnVal,i));
@@ -73,3 +84,15 @@ function SetSize(btnVal,pixel){
   }
 }
 
+
+//sets the size of the sketchpad when the site is first accessed
+function InitialLoad(){
+  const initialSize = 16;
+  for(let j = 0; j  < initialSize; j++){
+    GenerateTable(initialSize); 
+  }
+  const allPixels = document.querySelectorAll('.pixel');
+  Array.from(allPixels).map((i) => HoverEvent(16,i));
+  Array.from(allPixels).map((i) => SetSize(16,i));
+  
+}
