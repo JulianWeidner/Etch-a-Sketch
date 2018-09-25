@@ -30,36 +30,34 @@ function GenerateTable(columns){
 
 function AddEvent(sizeBtnArrayParam){
   sizeBtnArrayParam.addEventListener('click', (e) => {
-    let columns = e.target.value; 
+    let columns = e.target.value; //button value
     console.log(columns);
     for(let j = 0; j  < columns; j++){
       GenerateTable(columns);
     }
     const allPixels = document.querySelectorAll('.pixel-container');
-    Array.from(allPixels).map((i, columns) => AddSizeClass(i,columns));
     Array.from(allPixels).map((i) => HoverEvent(i));
-  
+    Array.from(allPixels).map((i) => SetSize(columns,i));
+    
+    SetSize()
   });
 }
 
 function HoverEvent(pixels){
   pixels.addEventListener('mouseover', ()  => {
-    pixels.setAttribute('style','background-color: black;');
+    pixels.setAttribute('style','background-color: #364249;');
   });
 }
 
-
-function AddSizeClass(pixelElement, sizeParam){
-  if(sizeParam == 16){
-    pixelElement.setAttribute("style", "width: .39%;");
-  } 
-  else if(sizeParam == 32){
-    //pixelElement.setAttribute("style", "width: .097%;");
+function SetSize(btnVal,pixel){
+  if(btnVal == 16){
+    pixel.setAttribute('style', 'height: 6.25%');
   }
-  else if(sizeParam == 64){
-   // pixelElement.setAttribute("style", "width: .024%;");
+  else if(btnVal == 32){
+    pixel.setAttribute('style', 'height: 3.125%;')
   }
-
+  else if(btnVal == 64){
+    pixel.setAttribute('style','height: 1.5625%;')
+  }
 }
-
 

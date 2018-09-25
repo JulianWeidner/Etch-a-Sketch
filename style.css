@@ -1,11 +1,18 @@
 body{
-  margin: 0 0;
+  margin:  0;
+  padding: 0;
+  width: 100%;
   background-color: #457B9D;
   color: #A8dadc;
 }
 
 html{
-  height: 100%;
+
+}
+
+
+p .title {
+  width: 100%;
 }
 
 .title{
@@ -13,6 +20,7 @@ html{
   font-family: 'Lobster', cursive;
   font-size: 3em;
   background-color: #e63946;
+  width: 100%;
   
 }
 
@@ -47,44 +55,46 @@ html{
 
 
 .container {
-  margin: 3% 25%;
-  width: 50%;
-  height: 100%;
-  text-align: left;
+  margin:  auto;
+  margin-top: 10px;
+  
+  width: 600px;
+  height: 550px;
+  text-align: center;
   background-color: #8a9ca8;
   border-style: solid;
   border-width: 7px;
   border-color: #e63946;
   border-radius: 3px;
-  display: inline-block;
+  display: flex;
 }
 
 .row-container{ 
-  overflow: inherit;
+  width: 100%;
+  display: inline-block;
+  padding: 0;
+  margin: -1px;
 }
 
 .pixel-container{
-  margin: 0;
-  padding: 0;
-  height: 20px;
-  width: 20px;
-  background-color: white;
-  display: inline-block;
+  /* 6.25%, 3.125%, 1.5625%
+  /*height: 6.25%; this is the height for 16x16*/
+  /* height for  32x32 height: 3.125%;*/
+  height: 6.25%;
+  
+  
+ 
+  background-color: #8a9ca8;;
+  display: block;
+
   
 }
 
-.pixel-container:hover {
-  background-color: black;
+
+
+.pixel-container-hover {
+  background-color: #4c5c67;
 }
 
-.pixel-container .sixten {
-  width: .39%;
-}
 
-.pixel-container .thirtyTwo{
-  width: .097%
-}
 
-.pixel-container .sixtyFour {
-  width: .024%
-}
