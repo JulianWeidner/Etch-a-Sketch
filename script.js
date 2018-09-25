@@ -3,12 +3,23 @@
 document.onload = InitialLoad();
 
 
-//Event Handler
+//EVENT HANDLING
+//calls the addEVent function which contains the event/function for generating the sketchpad/table
 sizeBtnGroup = document.querySelectorAll(".size-button");
 Array.from(sizeBtnGroup).map(i => AddEvent(i));
 
 
+const shakeButton = document.getElementById('shake-btn');
+shakeButton.addEventListener('click', () =>{
+  let colArray = document.querySelectorAll('.column-container');
+Array.from(colArray).map( (i) => DeleteColumnDiv(i));
+InitialLoad(); //work around 'fix' to keep the divs there after a clear
+});
 
+
+
+
+//FUNCTIONS
 //Creates the Column Div and adds the style class to it
 //the div created by this function is held in memory, and not added to HTML until the GenerateTable()
 function GenerateColumn(){
@@ -40,6 +51,14 @@ function GenerateTable(btnValParam){
 }
 //This is really the generate table function, 
 function AddEvent(sizeBtnArrayParam){
+  //Reset the playing field everytime the size button is clicked
+  //This is ripped directly from the shake button
+  sizeBtnArrayParam.addEventListener('click', () =>{
+    let colArray = document.querySelectorAll('.column-container');
+  Array.from(colArray).map( (i) => DeleteColumnDiv(i));
+  });
+  //
+  //
   sizeBtnArrayParam.addEventListener('click', (e) => {
     let btnVal = e.target.value; //Num From size button
     //if we wanted 16 rows we would want to call the generate table function 16 times. 
@@ -83,6 +102,30 @@ function SetSize(btnVal,pixel){
     pixel.setAttribute('style','height: 1.5625%;')
   }
 }
+
+//Shake Button
+//clears the board of the style
+function Shake(){
+  
+  colArray.removeChild(colArray);
+  console.log('shake called');
+}
+
+
+
+
+//Deletes the node specified from the param
+//
+//I use this funciton in the Shake & Size buttons.
+//
+//
+function DeleteColumnDiv(columnDivParam){
+  const column = columnDivParam;
+  column.parentNode.removeChild(column);
+  console.log("DeleteColumnDiv func Called");
+
+}
+
 
 
 //sets the size of the sketchpad when the site is first accessed
