@@ -13,7 +13,7 @@ const shakeButton = document.getElementById('shake-btn');
 shakeButton.addEventListener('click', () =>{
   let colArray = document.querySelectorAll('.column-container');
 Array.from(colArray).map( (i) => DeleteColumnDiv(i));
-InitialLoad(); //work around 'fix' to keep the divs there after a clear
+InitialLoad(); //work around 'fix'git to keep the divs there after a clear
 });
 
 
@@ -103,16 +103,6 @@ function SetSize(btnVal,pixel){
   }
 }
 
-//Shake Button
-//clears the board of the style
-function Shake(){
-  
-  colArray.removeChild(colArray);
-  console.log('shake called');
-}
-
-
-
 
 //Deletes the node specified from the param
 //
@@ -123,10 +113,7 @@ function DeleteColumnDiv(columnDivParam){
   const column = columnDivParam;
   column.parentNode.removeChild(column);
   console.log("DeleteColumnDiv func Called");
-
 }
-
-
 
 //sets the size of the sketchpad when the site is first accessed
 function InitialLoad(){
@@ -139,3 +126,24 @@ function InitialLoad(){
   Array.from(allPixels).map((i) => SetSize(16,i));
   
 }
+
+function Rainbow(){
+  if(rainbowBtn == true){
+
+  }
+}
+
+function RandomColor(){
+  
+  let valOne = Math.round(Math.random() * 10);
+  let valTwo = Math.round(Math.random() * 10);
+  let valThree = Math.round(Math.random() * 10)
+  let valFour = Math.round(Math.random() * 10);
+  let valFive = Math.round(Math.random() * 10);
+  let valSix = Math.round(Math.random() * 10);
+  let randomHexVal = "#"+ valOne + valTwo + valThree + valFour + valFive + valSix;
+  return randomHexVal;
+}
+
+console.log(RandomColor());
+
