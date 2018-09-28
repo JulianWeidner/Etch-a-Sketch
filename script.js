@@ -8,14 +8,21 @@ document.onload = InitialLoad();
 sizeBtnGroup = document.querySelectorAll(".size-button");
 Array.from(sizeBtnGroup).map(i => AddEvent(i));
 
-
+//clearing function
 const shakeButton = document.getElementById('shake-btn');
 shakeButton.addEventListener('click', () =>{
   let colArray = document.querySelectorAll('.column-container');
 Array.from(colArray).map( (i) => DeleteColumnDiv(i));
-InitialLoad(); //work around 'fix'git to keep the divs there after a clear
+InitialLoad(); //work around 'fix' to keep the divs there after a clear
 });
 
+//div color handling
+let isRainbow = false;
+const rainbowBtn = document.getElementById('rainbow-btn')
+rainbowBtn.addEventListener('click', () =>{
+  isRainbow = true;
+  console.log(isRainbow);  
+});
 
 
 
@@ -59,7 +66,7 @@ function AddEvent(sizeBtnArrayParam){
   });
   //
   //
-  sizeBtnArrayParam.addEventListener('click', (e) => {
+  sizeBtnArrayParam.addEventListener('click', (e, isRainbow) => {
     let btnVal = e.target.value; //Num From size button
     //if we wanted 16 rows we would want to call the generate table function 16 times. 
     //Generate Table function also calls the GeneratePixels
@@ -70,22 +77,28 @@ function AddEvent(sizeBtnArrayParam){
     //We take advantage of that here
     //.map calls a function on every element of an array. Here we make an array of every element and then call the SetSize and add a Style changing hover affect.
     const allPixels = document.querySelectorAll('.pixel');
-    Array.from(allPixels).map((i) => HoverEvent(btnVal,i));
+    Array.from(allPixels).map((i) => HoverEvent(btnVal,i,isRainbow));
     Array.from(allPixels).map((i) => SetSize(btnVal,i));
 
   });
 }
 
-function HoverEvent(btnVal,pixel){
-  pixel.addEventListener('mouseover', ()  => {
+function HoverEvent(btnVal,pixel,rainbowParam){
+  
+  pixel.addEventListener('mouseover', (rainbowParam)  => {
+    let color = GetBackgroundColor(rainbowParam);
+   
     if(btnVal == 16){
-      pixel.setAttribute('style', ' background-color: #364249; height: 6.25%;');
+      pixel.setAttribute('style', 'background-color:'+color+'; height: 6.25%;');
+      console.log(color);
     }
     else if(btnVal == 32){
-      pixel.setAttribute('style', 'background-color: #364249; height: 3.125%;')
+      pixel.setAttribute('style', 'background-color: '+color+'; height: 3.125%;');
+      console.log(color);
     }
     else if(btnVal == 64){
-      pixel.setAttribute('style','background-color: #364249; height: 1.5625%;')
+      pixel.setAttribute('style','background-color: '+color+'; height: 1.5625%;');
+      console.log(color);
     }
 
   });
@@ -103,16 +116,15 @@ function SetSize(btnVal,pixel){
   }
 }
 
-
 //Deletes the node specified from the param
 //
 //I use this funciton in the Shake & Size buttons.
-//
 //
 function DeleteColumnDiv(columnDivParam){
   const column = columnDivParam;
   column.parentNode.removeChild(column);
   console.log("DeleteColumnDiv func Called");
+
 }
 
 //sets the size of the sketchpad when the site is first accessed
@@ -126,15 +138,8 @@ function InitialLoad(){
   Array.from(allPixels).map((i) => SetSize(16,i));
   
 }
-
-function Rainbow(){
-  if(rainbowBtn == true){
-
-  }
-}
-
+//generates the hex value for the color
 function RandomColor(){
-  
   let valOne = Math.round(Math.random() * 10);
   let valTwo = Math.round(Math.random() * 10);
   let valThree = Math.round(Math.random() * 10)
@@ -144,6 +149,20 @@ function RandomColor(){
   let randomHexVal = "#"+ valOne + valTwo + valThree + valFour + valFive + valSix;
   return randomHexVal;
 }
-
-console.log(RandomColor());
+//decides if the bg-col of the pixel divs should be 'black' or random
+function GetBackgroundColor(rainbowBoolParam){
+  let isRainbow = rainbowBoolParam;
+  if(isRainbow == 'true'){
+     let color = RandomColor();
+     console.log("changed");
+     return color;
+   }
+  else if(isRainbow == 'false'){
+    return '#364249';
+  }
+  else{
+    return "black"
+    console.log("ERROR color not setting");
+  }
+}
 
